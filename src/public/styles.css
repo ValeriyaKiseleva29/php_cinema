@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+nav {
+    background-color: #333;
+    padding: 15px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #ddd;
+}
+
+.logo {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    flex-grow: 1;
+}
+.movie-announcement {
+    margin: 20px 0;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.movies-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.movie-card {
+    width: 23%;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.movie-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.movie-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+/* Стили для футера */
+.footer {
+    background-color: white;
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    margin: 0;
+    color: #555;
+}
+
+.social-section {
+    text-align: right;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .footer-section {
+        width: 50%;
+    }
+
+    .social-section {
+        text-align: right;
+    }
+}
