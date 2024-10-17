@@ -6,6 +6,7 @@
     <title>Регистрация</title>
 </head>
 <body>
+
 <h2>Регистрация</h2>
 
 
@@ -26,7 +27,6 @@
         <button type="submit">Зарегистрироваться</button>
     </div>
 </form>
-
 </body>
 </html>
 
