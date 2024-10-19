@@ -14,12 +14,12 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between; /* Это можно оставить */
+    justify-content: space-between;
     align-items: center;
 }
 
 nav ul li {
-    margin-right: 20px; /* Отступ между элементами */
+    margin-right: 20px;
 }
 nav ul li a {
     color: white;
@@ -29,12 +29,12 @@ nav ul li a {
 
 nav ul .menu-left {
     display: flex;
-    gap: 20px; /* Добавляем расстояние между элементами слева */
+    gap: 20px;
 }
 
 nav ul .menu-right {
     display: flex;
-    gap: 20px; /* Добавляем расстояние между элементами справа */
+    gap: 20px;
 }
 
 .logo {
@@ -130,7 +130,7 @@ nav ul .menu-right {
     }
 }
 .registration-container {
-    max-width: 600px; /* Увеличил ширину */
+    max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: white;
@@ -151,7 +151,7 @@ h2 {
 }
 
 .form-group {
-    margin-bottom: 20px; /* Увеличил нижний отступ */
+    margin-bottom: 20px;
 }
 
 .form-group label {
@@ -162,9 +162,9 @@ h2 {
 
 .form-group input,
 .form-group select {
-    width: calc(100% - 20px); /* Отступы по бокам для ровных краев */
+    width: calc(100% - 20px);
     padding: 10px;
-    margin: 0 10px; /* Симметричные отступы слева и справа */
+    margin: 0 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -216,7 +216,50 @@ input.error {
 
 @media (min-width: 768px) {
     .registration-container {
-        width: 500px; /* Изменил ширину для экранов 768px+ */
+        width: 500px;
+    }
+}
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.search-input {
+    padding: 4px 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    width: 220px !important;
+    height: 30px !important;
+}
+
+.search-btn {
+    padding: 3px 5px !important;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+    height: 25px !important;
+    width: 60px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-btn:hover {
+    background-color: #1cbb0e !important;
+}
+
+@media (max-width: 768px) {
+    .search-input {
+        width: 150px;
     }
 }
 
+.logo {
+    text-align: center;
+    flex: 1;
+}

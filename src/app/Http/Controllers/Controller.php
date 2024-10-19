@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\RMVC\Database\DB;
 
 class Controller
 {
@@ -9,38 +10,65 @@ class Controller
     private $apiKey = 'e2c340fa-58e4-4ca8-9726-d8cb6a801707';
     private $cinemaBaseUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films';
     private $filmsBaseUrl = 'https://videocdn.tv/api/';
+    private $db;
 
-    // Функция для поиска фильма по названию
+    public function __construct()
+    {
+        $this->db = new DB();
+    }
     public function searchFilmsByTitle($title)
     {
         $url = $this->filmsBaseUrl . "short?api_token=" . $this->filmToken . "&title=" . urlencode($title);
         return $this->makeRequest($url);
     }
 
-    // Получение всех фильмов с возможностью постраничного просмотра
-    public function getAllFilms($page = null)
+
+    public function getAllFilms()
     {
-        $url = $this->filmsBaseUrl . $this->filmEndpoint . "?api_token=" . $this->filmToken;
-        if ($page) {
-            $url .= "&page=" . $page;
+        $totalPages = 100;
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $url = $this->filmsBaseUrl . $this->filmEndpoint . "?api_token=" . $this->filmToken . "&page=" . $i;
+
+            $response = $this->makeRequest($url);
+
+            if (isset($response['data']) && !empty($response['data'])) {
+                foreach ($response['data'] as $film) {
+                    $this->saveFilmToDatabase($film);
+                }
+            } else {
+                break;
+            }
         }
-        return $this->makeRequest($url);
     }
 
-    // Получение одного фильма по его ID
-    public function getOneFilm($id)
+    public function saveFilmToDatabase($filmData)
     {
-        $url = $this->filmsBaseUrl . $this->shortEndpoint . "?api_token=" . $this->filmToken . "&kinopoisk_id=" . $id;
-        return $this->makeRequest($url);
+        $sql = "INSERT INTO movies (kp_id, orig_title, title, imdb_id, content_type, iframe_src, year, translations, img_link) 
+            VALUES (:kp_id, :orig_title, :title, :imdb_id, :content_type, :iframe_src, :year, :translations, :img_link)";
+
+        $params = [
+            'kp_id' => $filmData['kp_id'],
+            'orig_title' => $filmData['orig_title'],
+            'title' => $filmData['title'],
+            'imdb_id' => $filmData['imdb_id'],
+            'content_type' => $filmData['content_type'],
+            'iframe_src' => $filmData['iframe_src'],
+            'year' => $filmData['year'],
+            'translations' => json_encode($filmData['translations']),
+            'img_link' => $filmData['img_link'] ?? null
+        ];
+
+        $this->db->execute($sql, $params);
     }
 
-    // Получение информации о фильме и его постер
+
+
     public function getImageUrl($id)
     {
         $url = $this->cinemaBaseUrl . "/" . $id;
         $response = $this->makeRequest($url);
 
-        // Если произошла ошибка, возвращаем фейковый постер
         if (isset($response['error'])) {
             return [
                 'error' => $response['error'],
@@ -52,7 +80,7 @@ class Controller
         return $response;
     }
 
-    // Функция для выполнения запросов через cURL
+
     private function makeRequest($url)
     {
         $ch = curl_init();
