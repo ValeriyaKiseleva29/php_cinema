@@ -48,9 +48,9 @@ class Controller
             VALUES (:kp_id, :orig_title, :title, :imdb_id, :content_type, :iframe_src, :year, :translations, :img_link)";
 
         $params = [
-            'kp_id' => $filmData['kp_id'],
+            'kp_id' => $filmData['kinopoisk_id'],
             'orig_title' => $filmData['orig_title'],
-            'title' => $filmData['title'],
+            'title' => $filmData['ru_title'],
             'imdb_id' => $filmData['imdb_id'],
             'content_type' => $filmData['content_type'],
             'iframe_src' => $filmData['iframe_src'],
