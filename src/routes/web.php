@@ -21,5 +21,9 @@ Route::post('/auth', [AuthController::class, 'store'])->name('auth.store');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/logout_confirmation', [AuthController::class, 'showLogoutConfirmation'])->name('logout.confirmation');
+
 
 //Route::get('/import-films', [Controller::class, 'getAllFilms']);

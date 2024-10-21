@@ -9,6 +9,13 @@
 <body>
 
 <?php include 'partials/header.php'; ?>
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="message">
+        <?= $_SESSION['message']; ?>
+    </div>
+    <?php unset($_SESSION['message']); ?>
+<?php endif; ?>
+
 <div class="movie-announcement">
     <h2>Анонсы фильмов</h2>
 

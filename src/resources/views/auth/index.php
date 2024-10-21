@@ -53,6 +53,14 @@
                 <span class="error"><?= $_SESSION['errors']['age'] ?></span>
             <?php endif; ?>
         </div>
+        <div class="form-group">
+            <label for="dob">Дата рождения:</label>
+            <input type="date" id="dob" name="dob" class="<?= isset($_SESSION['errors']['dob']) ? 'error' : '' ?>" value="<?= $_SESSION['old']['dob'] ?? '' ?>">
+            <?php if (isset($_SESSION['errors']['dob'])): ?>
+                <span class="error"><?= $_SESSION['errors']['dob'] ?></span>
+            <?php endif; ?>
+        </div>
+
 
         <div class="form-group">
             <label for="gender">Пол:</label>

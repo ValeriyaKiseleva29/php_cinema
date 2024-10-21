@@ -32,6 +32,11 @@
         </div>
 
         <div class="form-group">
+            <label for="remember">Запомнить меня:</label>
+            <input type="checkbox" id="remember" name="remember" <?= isset($_POST['remember']) ? 'checked' : '' ?>>
+        </div>
+
+        <div class="form-group">
             <button type="submit">Войти</button>
         </div>
     </form>

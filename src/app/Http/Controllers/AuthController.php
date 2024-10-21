@@ -29,6 +29,11 @@ class AuthController extends Controller
     {
         return View::view('auth.login');
     }
+    public function showLogoutConfirmation()
+    {
+        return View::view('film.partials.logout_confirmation');
+    }
+
 
     public function store()
     {
@@ -87,7 +92,7 @@ class AuthController extends Controller
 
         // Сохраняем пользователя в базу данных
         $sql = "INSERT INTO users (username, email, password, dob, age, gender, interests) 
-            VALUES (:username, :email, :password, :dob, :age, :gender, :interests)";
+        VALUES (:username, :email, :password, :dob, :age, :gender, :interests)";
 
         $this->db->execute($sql, [
             'username' => $_POST['username'],
@@ -99,8 +104,137 @@ class AuthController extends Controller
             'interests' => json_encode($_POST['interests']), // сохраняем интересы как JSON
         ]);
 
+        $user_id = $this->db->lastInsertId();
+
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['username'] = $_POST['username'];
+
+        // Проверка "Запомнить меня" и установка куки
+        if (isset($_POST['remember'])) {
+            $rememberMeToken = bin2hex(random_bytes(16)); // Генерация уникального токена
+            setcookie('remember_me', $rememberMeToken, [
+                'expires' => time() + (86400 * 30), // Кука на 30 дней
+                'path' => '/',
+                'httponly' => true,
+                'secure' => isset($_SERVER['HTTPS']),
+                'samesite' => 'Strict',
+            ]);
+
+            // Сохраняем токен в базу данных
+            $sql = "UPDATE users SET remember_me_token = :token WHERE id = :id";
+            $this->db->execute($sql, [
+                'token' => $rememberMeToken,
+                'id' => $user_id
+            ]);
+        }
+
         // Перенаправляем пользователя после успешной регистрации
-        $_SESSION['message'] = 'Регистрация успешна!';
+        $_SESSION['message'] = 'Вы успешно зарегистрировались. Добро пожаловать на сайт!';
+
         Route::redirect('/films');
     }
+
+    public function login()
+    {
+        // Проверяем наличие куки "remember_me"
+        if (isset($_COOKIE['remember_me'])) {
+            $sql = "SELECT * FROM users WHERE remember_me_token = :token";
+            $user = $this->db->fetch($sql, ['token' => $_COOKIE['remember_me']]);
+
+            if ($user) {
+                // Если пользователь найден по токену, создаем сессию и перенаправляем на страницу фильмов
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                Route::redirect('/films');
+                return;
+            }
+        }
+
+        // Проверка на ошибки в email и пароле
+        $errors = [];
+
+        if (empty($_POST['email'])) {
+            $errors['email'] = 'Электронная почта обязательна.';
+        }
+
+        if (empty($_POST['password'])) {
+            $errors['password'] = 'Пароль обязателен.';
+        }
+
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            Route::redirect('/login');
+            return;
+        }
+
+        // Ищем пользователя в базе данных по email
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $user = $this->db->fetch($sql, ['email' => $_POST['email']]);
+
+        // Если пользователь не найден
+        if (!$user) {
+            $_SESSION['errors']['email'] = 'Пользователь с таким email не найден.';
+            Route::redirect('/login');
+            return;
+        }
+
+        // Проверка пароля
+        if (!password_verify($_POST['password'], $user['password'])) {
+            $_SESSION['errors']['password'] = 'Неверный пароль.';
+            Route::redirect('/login');
+            return;
+        }
+
+        // Если пользователь успешно авторизован, создаем сессию
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+
+        // Если выбрана опция "Запомнить меня", создаем новый токен и устанавливаем куки
+        if (isset($_POST['remember'])) {
+            $rememberMeToken = bin2hex(random_bytes(16)); // Генерация уникального токена
+            setcookie('remember_me', $rememberMeToken, [
+                'expires' => time() + (86400 * 30), // Кука на 30 дней
+                'path' => '/',
+                'httponly' => true,       // Кука недоступна через JavaScript
+                'secure' => isset($_SERVER['HTTPS']), // Только по HTTPS
+                'samesite' => 'Strict',   // Защита от CSRF-атак
+            ]);
+
+            // Обновляем токен в базе данных
+            $sql = "UPDATE users SET remember_me_token = :token WHERE id = :id";
+            $this->db->execute($sql, [
+                'token' => $rememberMeToken,
+                'id' => $user['id']
+            ]);
+        }
+
+        // Перенаправляем пользователя на главную страницу
+        $_SESSION['message'] = 'Вы успешно вошли. Добро пожаловать на сайт!';
+
+        Route::redirect('/films');
+
+    }
+
+
+    public function logout()
+    {
+        // Удаляем токен из базы данных, если куки "remember_me" существуют
+        if (isset($_COOKIE['remember_me'])) {
+            $sql = "UPDATE users SET remember_me_token = NULL WHERE remember_me_token = :token";
+            $this->db->execute($sql, ['token' => $_COOKIE['remember_me']]);
+        }
+
+        // Завершаем сессию
+        session_destroy();
+
+        // Удаляем куки
+        if (isset($_COOKIE['remember_me'])) {
+            setcookie('remember_me', '', time() - 3600, "/");
+        }
+
+        // Перенаправляем на страницу логина
+        Route::redirect('/films');
+    }
+
 }
+

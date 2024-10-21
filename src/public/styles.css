@@ -286,3 +286,67 @@ input.error:focus, select.error:focus, textarea.error:focus {
     text-align: center;
     flex: 1;
 }
+/* Стиль для страницы подтверждения выхода */
+.confirmation {
+    max-width: 400px;
+    margin: 100px auto; /* Центрируем блок по вертикали и горизонтали */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень вокруг блока */
+    text-align: center;
+}
+
+.confirmation h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Стили для кнопок Да и Нет */
+.confirmation a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Стиль для кнопки Да (зеленая) */
+.confirmation a[href="/logout"] {
+    background-color: #4CAF50; /* Зеленая кнопка */
+}
+
+.confirmation a[href="/logout"]:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+    transform: translateY(-2px); /* Плавный подъем */
+}
+
+/* Стиль для кнопки Нет (красная) */
+.confirmation a[href="/"] {
+    background-color: #f44336; /* Красная кнопка */
+}
+
+.confirmation a[href="/"]:hover {
+    background-color: #e53935;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+    transform: translateY(-2px); /* Плавный подъем */
+}
+/* Стиль для сообщения */
+.message {
+    max-width: 600px;
+    margin: 50px auto; /* Центрирование сообщения по горизонтали и отступ сверху */
+    padding: 20px;
+    background-color: #e3f2fd; /* Светло-голубой фон */
+    color: #0d47a1; /* Темно-голубой цвет текста */
+    font-style: italic; /* Косой шрифт */
+    border: 1px solid #0d47a1; /* Голубая граница */
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень вокруг блока */
+}
