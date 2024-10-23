@@ -12,8 +12,8 @@ use App\Http\Controllers\Controller;
 //Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
 //Route::get('/posts/{post}/', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 
-Route::get('/films', [FilmController::class, 'index'])->name('films.index')->middleware('auth');
-Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show')->middleware('auth');;
+Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show');
 Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index')->middleware('auth');;
 
 Route::get('/auth', [AuthController::class, 'index'])->name('auth.index');
