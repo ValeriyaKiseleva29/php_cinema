@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 //Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
 //Route::get('/posts/{post}/', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 
-Route::get('/films', [FilmController::class, 'index'])->name('films.index')->middleware('auth');;
+Route::get('/films', [FilmController::class, 'index'])->name('films.index')->middleware('auth');
 Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show')->middleware('auth');;
 Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index')->middleware('auth');;
 
@@ -25,5 +25,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/logout_confirmation', [AuthController::class, 'showLogoutConfirmation'])->name('logout.confirmation');
 
+Route::get('/update-movies', [Controller::class, 'updateMovies']);
 
 //Route::get('/import-films', [Controller::class, 'getAllFilms']);

@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie in Che - Фильм</title>
+    <title><?= htmlspecialchars($film['title']); ?></title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <?php include 'partials/header.php'; ?>
-<div class="movie-detail">
-    <!-- Постер фильма -->
-    <div class="movie-poster">
-        <img src="path_to_movie_poster.jpg" alt="Постер фильма">
-    </div>
 
-    <!-- Информация о фильме -->
+<div class="movie-detail">
     <div class="movie-info">
-        <h1>Название фильма</h1>
-        <p>Описание фильма. Здесь будет краткое описание сюжета, главные события и другие интересные факты о фильме.</p>
-        <p><strong>Жанры:</strong> Драма, Комедия, Приключения</p>
-        <p><strong>Рейтинг:</strong> 8.2/10</p>
+        <h1><?= htmlspecialchars($film['title']); ?></h1>
+        <p><strong>Год:</strong> <?= htmlspecialchars($film['year']); ?></p>
+        <?php if (!empty($film['iframe_src'])): ?>
+            <iframe src="<?= htmlspecialchars($film['iframe_src']); ?>" allowfullscreen></iframe>
+        <?php else: ?>
+            <p>Видео недоступно</p>
+        <?php endif; ?>
     </div>
 </div>
-<?php include 'partials/footer.php'; ?>
 
+
+<?php include 'partials/footer.php'; ?>
 </body>
 </html>

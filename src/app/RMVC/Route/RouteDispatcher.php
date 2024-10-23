@@ -79,7 +79,7 @@ private function setParamMap()
     {
         $ClassName = $this->routeConfiguration->controller;
         $action = $this->routeConfiguration->action;
-        print((new $ClassName)->$action(...$this->paramRequestMap));
+        print((new $ClassName)->$action(...array_values($this->paramRequestMap)));
 
         die();
     }

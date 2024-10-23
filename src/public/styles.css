@@ -5,8 +5,11 @@ body {
     background-color: #f4f4f4;
 }
 nav {
-    background-color: #333;
+    background-color: #2a084a;
     padding: 15px;
+    display: flex;
+    justify-content: space-between; /* Логотип будет находиться по центру между элементами */
+    align-items: center; /* Центрируем элементы по вертикали */
 }
 
 nav ul {
@@ -16,33 +19,51 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* Заставляем список растянуться по ширине */
 }
 
 nav ul li {
     margin-right: 20px;
 }
+
 nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
 }
 
-nav ul .menu-left {
-    display: flex;
-    gap: 20px;
-}
-
+nav ul .menu-left,
 nav ul .menu-right {
     display: flex;
     gap: 20px;
 }
 
 .logo {
-    margin: 0 auto;
-    color: white;
-    font-size: 24px;
+    font-size: 38px; /* Увеличиваем размер текста логотипа */
     font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center; /* Центрируем текст */
+    align-items: center; /* Центрируем по вертикали */
+    text-align: center;
+    white-space: nowrap; /* Не разрешаем переносу текста */
+    padding: 0;
+    margin: 0;
 }
+
+.logo a {
+    text-decoration: none;
+    color: white;
+}
+
+.logo li {
+    display: flex;
+    align-items: center; /* Центрируем логотип внутри списка */
+    padding: 0; /* Убираем отступы внутри элемента списка */
+    margin: 0; /* Убираем отступы внутри элемента списка */
+}
+
+
 
 .movie-announcement {
     margin: 20px 0;
@@ -52,6 +73,13 @@ nav ul .menu-right {
     border-bottom: 1px solid #ccc;
 }
 
+.movie-announcement img {
+    max-height: 400px; /* Устанавливаем максимальную высоту */
+    width: auto; /* Сохраняем пропорции */
+    display: inline-block;
+}
+
+
 .movies-grid {
     display: flex;
     justify-content: space-around;
@@ -60,12 +88,17 @@ nav ul .menu-right {
 }
 
 .movie-card {
-    width: 23%;
+    width: 20%; /* Делаем карточку немного меньше */
     margin-bottom: 20px;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Добавляем плавный переход для эффектов */
+}
+.movie-card:hover {
+    transform: scale(1.05); /* Увеличение карточки при наведении */
+    box-shadow: 0 8px 18px rgba(42, 8, 74, 0.8); /* Темно-фиолетовая тень при наведении */
 }
 
 .movie-card img {
@@ -339,14 +372,106 @@ input.error:focus, select.error:focus, textarea.error:focus {
 /* Стиль для сообщения */
 .message {
     max-width: 600px;
-    margin: 50px auto; /* Центрирование сообщения по горизонтали и отступ сверху */
+    margin: 50px auto;
     padding: 20px;
-    background-color: #e3f2fd; /* Светло-голубой фон */
-    color: #0d47a1; /* Темно-голубой цвет текста */
-    font-style: italic; /* Косой шрифт */
-    border: 1px solid #0d47a1; /* Голубая граница */
-    border-radius: 10px;
+    background-color: #4a148c; /* Глубокий фиолетовый фон */
+    color: #fff; /* Белый текст для контраста */
+    font-style: normal; /* Прямой текст, чтобы было легче читать */
+    border: 2px solid #ab47bc; /* Яркая граница для контраста */
+    border-radius: 15px; /* Более закругленные углы */
     text-align: center;
     font-size: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень вокруг блока */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более сильная тень */
+    position: relative;
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s 4.5s ease-in forwards; /* Анимация появления и исчезновения */
+    opacity: 1;
 }
+
+/* Анимация появления */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px); /* Начинаем чуть выше */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Движение вниз к нормальной позиции */
+    }
+}
+
+/* Анимация исчезновения */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px); /* Сообщение уходит вверх */
+    }
+
+}
+.movie-detail {
+    display: flex;
+    justify-content: center; /* Центрируем весь блок с фильмом */
+    padding: 20px;
+}
+
+.movie-info {
+    width: 100%; /* Ширина блока на всю страницу */
+    max-width: 1200px; /* Ограничиваем максимальную ширину для контента */
+    text-align: center; /* Центрируем заголовок и текст */
+}
+
+.movie-info h1 {
+    color: #2a084a; /* Цвет заголовка под цвет хедера */
+    font-size: 36px; /* Размер заголовка */
+    margin-bottom: 20px;
+}
+
+.movie-info p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.movie-info iframe {
+    width: 90%; /* Уменьшаем ширину iframe до 90% */
+    height: 600px; /* Устанавливаем высоту для 16:9 */
+    max-width: 1100px; /* Максимальная ширина проигрывателя */
+    border: none; /* Убираем рамку у iframe */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
+}
+.pagination {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    margin-bottom: 30px; /* Отступ перед футером */
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.pagination a {
+    color: white;
+    background-color: #2a084a; /* Фиолетовый цвет как у хедера */
+    padding: 8px 16px;
+    margin: 0 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #6a1b9a; /* Более светлый фиолетовый при наведении */
+}
+
+.pagination span {
+    color: #333;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+}
+
+
+
+

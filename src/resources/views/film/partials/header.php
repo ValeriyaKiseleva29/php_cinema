@@ -3,11 +3,9 @@
         <li class="menu-left">
             <a href="/">Главная</a>
         </li>
-        <li class="logo">
+        <div class="logo">
             <a href="/">Movie in Che</a>
-        </li>
-
-        <!-- Строка поиска всегда доступна -->
+        </div>
         <li>
             <form class="search-form" action="/search" method="GET">
                 <input type="text" name="query" placeholder="Поиск фильмов..." class="search-input">

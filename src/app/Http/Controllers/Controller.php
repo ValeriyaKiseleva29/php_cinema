@@ -61,7 +61,47 @@ class Controller
 
         $this->db->execute($sql, $params);
     }
+    public function getFilmsWithImdbId() {
 
+        $sql = "SELECT id, imdb_id FROM movies WHERE img_link IS NULL LIMIT 1000";
+        return $this->db->fetchAll($sql);
+    }
+
+    public function updateFilmsWithOmdbData() {
+        $films = $this->getFilmsWithImdbId();
+
+        $apiKey = 'e2d0738a';
+
+        foreach ($films as $film) {
+            $imdbId = $film['imdb_id'];
+
+            $url = "http://www.omdbapi.com/?i={$imdbId}&apikey={$apiKey}";
+
+            $response = $this->makeRequest($url);
+
+            if (isset($response['Poster']) && isset($response['Year'])) {
+                $this->updateFilmInDatabase($film['id'], $response['Poster'], $response['Year']);
+            }
+        }
+    }
+    public function updateFilmInDatabase($id, $poster, $year) {
+        $yearFormatted = $year . '-01-01';
+
+        $sql = "UPDATE movies SET img_link = :poster, year = :year WHERE id = :id";
+        $params = [
+            ':poster' => $poster,
+            ':year' => $yearFormatted,
+            ':id' => $id
+        ];
+        $this->db->execute($sql, $params);
+
+        echo "Обновлен фильм с ID {$id}: Постер и год.\n";
+    }
+
+
+    public function updateMovies() {
+        $this->updateFilmsWithOmdbData();
+    }
 
 
     public function getImageUrl($id)
