@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 //Route::get('/posts/{post}/', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+//Route::get('/search', [FilmController::class, 'search'])->name('films.index');
 Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show');
 Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index')->middleware('auth');;
 

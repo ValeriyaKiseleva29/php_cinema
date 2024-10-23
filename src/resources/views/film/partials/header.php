@@ -7,8 +7,8 @@
             <a href="/">Movie in Che</a>
         </div>
         <li>
-            <form class="search-form" action="/search" method="GET">
-                <input type="text" name="query" placeholder="Поиск фильмов..." class="search-input">
+            <form class="search-form" action="/films" method="GET">
+                <input type="text" name="query" value="<?= htmlspecialchars($query ?? '') ?>" placeholder="Поиск фильмов..." class="search-input">
                 <button type="submit" class="search-btn">Найти</button>
             </form>
         </li>
