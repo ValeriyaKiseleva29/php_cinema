@@ -18,35 +18,38 @@ class RouteDispatcher
     }
 
     public function process()
-{
-    $this->saveRequestUri();
-    $this->setParamMap();
-    $this->makeRegexRequest();
-    $this->run();
-}
-   private function saveRequestUri()
-   {
-        if ($_SERVER['REQUEST_URI'] !== '/'){
-            $this->requestUri = $this->clean( $_SERVER['REQUEST_URI']);
+    {
+        $this->saveRequestUri();
+        $this->setParamMap();
+        $this->makeRegexRequest();
+        $this->run();
+    }
+
+    private function saveRequestUri()
+    {
+        if ($_SERVER['REQUEST_URI'] !== '/') {
+
+            $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
+            $this->requestUri = $this->clean($parsedUrl['path']);
             $this->routeConfiguration->route = $this->clean($this->routeConfiguration->route);
         }
-   }
+    }
 
-     private function clean($str): string
-{
-       return preg_replace('/(^\/)|(\/$)/', '', $str);
+    private function clean($str): string
+    {
+        return preg_replace('/(^\/)|(\\$)/', '', $str);
+    }
 
-}
-
-private function setParamMap()
+    private function setParamMap()
     {
         $routeArray = explode('/', $this->routeConfiguration->route);
 
         foreach ($routeArray as $paramKey => $param) {
-            if (preg_match('/{.*}/', $param)) {
+            if (preg_match('/{(.*)}/', $param)) {
                 $this->paramMap[$paramKey] = preg_replace('/(^{)|(}$)/', '', $param);
             }
         }
+
     }
 
     private function makeRegexRequest()
@@ -57,9 +60,11 @@ private function setParamMap()
             if (!isset($requestUriArray[$paramKey])) {
                 return;
             }
+
             $this->paramRequestMap[$param] = $requestUriArray[$paramKey];
             $requestUriArray[$paramKey] = '{.*}';
         }
+
         $this->requestUri = implode('/', $requestUriArray);
         $this->prepareRegex();
     }
@@ -75,12 +80,14 @@ private function setParamMap()
             $this->render();
         }
     }
+
     private function render()
     {
-        $ClassName = $this->routeConfiguration->controller;
+        $className = $this->routeConfiguration->controller;
         $action = $this->routeConfiguration->action;
-        print((new $ClassName)->$action(...array_values($this->paramRequestMap)));
+        print((new $className)->$action(...$this->paramRequestMap));
 
         die();
     }
+
 }

@@ -10,11 +10,6 @@ class RouteConfiguration
     private string $name;
     private string $middleware;
 
-    /**
-     * @param string $route
-     * @param string $controller
-     * @param string $action
-     */
     public function __construct(string $route, string $controller, string $action)
     {
         $this->route = $route;
@@ -27,11 +22,11 @@ class RouteConfiguration
         $this->name = $name;
         return $this;
     }
+
     public function middleware(string $middleware): RouteConfiguration
     {
         $this->middleware = $middleware;
         return $this;
     }
-
 
 }
