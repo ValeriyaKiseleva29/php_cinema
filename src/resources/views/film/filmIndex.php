@@ -17,9 +17,8 @@
     <?php unset($_SESSION['message']); ?>
 <?php endif; ?>
 
-<div class="movie-announcement img ">
+<div class="movie-announcement img">
     <h2>Анонсы фильмов</h2>
-
     <img src="https://static.rozetked.me/imager/main/images/uploads/LPOzw16fGLgH.webp" alt="Анонс фильма 1">
     <img src="https://www.indiewire.com/wp-content/uploads/2018/12/Screen-Shot-2018-12-06-at-4.52.45-PM.png?w=674" alt="Анонс фильма 2">
 </div>
@@ -33,7 +32,6 @@
                 <?php else: ?>
                     <img src="/path/to/default/poster.jpg" alt="Постер не найден">
                 <?php endif; ?>
-
                 <h3><?= htmlspecialchars($film['title']); ?></h3>
                 <a href="/films/<?= $film['id']; ?>">Смотреть онлайн</a>
             </div>
@@ -44,18 +42,18 @@
 </div>
 
 <div class="pagination">
+    <?php if ($currentPage > 1): ?>
+        <a href="/films?page=<?= $currentPage - 1; ?>&query=<?= htmlspecialchars($query ?? ''); ?>">Предыдущая</a>
+    <?php endif; ?>
 
-        <?php if ($currentPage > 1): ?>
-            <a href="/films?page=<?= $currentPage - 1; ?>">Предыдущая</a>
-        <?php endif; ?>
+    <span>Страница <?= $currentPage; ?> из <?= $totalPages; ?></span>
 
-        <span>Страница <?= $currentPage; ?> из <?= $totalPages; ?></span>
-
-        <?php if ($currentPage < $totalPages): ?>
-            <a href="/films?page=<?= $currentPage + 1; ?>">Следующая</a>
-        <?php endif; ?>
+    <?php if ($currentPage < $totalPages): ?>
+        <a href="/films?page=<?= $currentPage + 1; ?>&query=<?= htmlspecialchars($query ?? ''); ?>">Следующая</a>
+    <?php endif; ?>
 </div>
 
 <?php include 'partials/footer.php'; ?>
+
 </body>
 </html>

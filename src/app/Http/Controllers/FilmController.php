@@ -13,27 +13,32 @@ class FilmController extends Controller {
     {
         $this->db = new DB();
     }
-    public function index() {
+    public function index()
+    {
+        $searchTerm = $_GET['query'] ?? '';
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
         $filmsPerPage = 16;
         $offset = ($page - 1) * $filmsPerPage;
 
-        $films = $this->db->fetchAll(
-            "SELECT * FROM movies LIMIT $filmsPerPage OFFSET $offset"
-        );
-        $totalFilms = $this->db->fetch("SELECT COUNT(*) as total FROM movies")['total'];
+        $partialSearchTerm = '%' . $searchTerm . '%';
+
+        $query = "SELECT * FROM movies WHERE title LIKE :searchTerm LIMIT $filmsPerPage OFFSET $offset";
+
+        $films = $this->db->fetchAll($query, [
+            'searchTerm' => $partialSearchTerm
+        ]);
+
+        $totalFilms = $this->db->fetchColumn("SELECT COUNT(*) FROM movies WHERE title LIKE :searchTerm", ['searchTerm' => $partialSearchTerm]);
         $totalPages = ceil($totalFilms / $filmsPerPage);
 
         return View::view('film.filmIndex', [
             'films' => $films,
             'currentPage' => $page,
-            'totalPages' => $totalPages
-
+            'totalPages' => $totalPages,
+            'query' => $searchTerm
         ]);
     }
-
-
 
     public function show($filmId) {
 

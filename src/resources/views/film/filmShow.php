@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($film['title']); ?></title>
+    <title><?php htmlspecialchars($film['title']); ?></title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -17,6 +17,8 @@
             <iframe src="<?= htmlspecialchars($film['iframe_src']); ?>" allowfullscreen></iframe>
         <?php else: ?>
             <p>Видео недоступно</p>
+        <input type="hidden" name="film" value="<?php $film['id'] ?>">
+
         <?php endif; ?>
     </div>
 </div>
