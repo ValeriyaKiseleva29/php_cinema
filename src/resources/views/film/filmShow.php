@@ -20,6 +20,24 @@
         <input type="hidden" name="film" value="<?php $film['id'] ?>">
 
         <?php endif; ?>
+
+        <!-- Если фильм в избранном, показываем кнопку "Удалить из избранного" -->
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <?php if ($is_favorite): ?>
+                <form action="/favorites/remove" method="POST" class="favorite-form">
+                    <input type="hidden" name="film_id" value="<?= htmlspecialchars($film['id']); ?>">
+                    <button type="submit" class="favorite-btn">Удалить из избранного</button>
+                </form>
+            <?php else: ?>
+                <form action="/favorites/add" method="POST" class="favorite-form">
+                    <input type="hidden" name="film_id" value="<?= htmlspecialchars($film['id']); ?>">
+                    <button type="submit" class="favorite-btn">Добавить в избранное</button>
+                </form>
+            <?php endif; ?>
+        <?php endif; ?>
+
+
+
     </div>
 </div>
 

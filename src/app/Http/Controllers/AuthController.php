@@ -232,9 +232,10 @@ class AuthController extends Controller
             setcookie('remember_me', '', time() - 3600, "/");
         }
 
-        // Перенаправляем на страницу логина
-        Route::redirect('/films');
+        // Перенаправляем на главную страницу без фильтрации
+        Route::redirect('/');
     }
+
 
 }
 

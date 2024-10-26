@@ -11,7 +11,7 @@
 
 <div class="confirmation">
     <h2>Вы действительно хотите выйти?</h2>
-    <a href="/logout">Да</a>  <!-- Изменение пути для выхода -->
+    <a href="/logout">Да</a>
     <a href="/">Нет</a>
 </div>
 <?php include __DIR__ . '/footer.php'; ?>

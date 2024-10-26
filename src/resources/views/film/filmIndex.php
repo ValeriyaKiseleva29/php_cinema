@@ -10,6 +10,7 @@
 
 <?php include 'partials/header.php'; ?>
 
+
 <?php if (isset($_SESSION['message'])): ?>
     <div class="message">
         <?= $_SESSION['message']; ?>
@@ -19,10 +20,13 @@
 
 <div class="movie-announcement img">
     <h2>Анонсы фильмов</h2>
-    <img src="https://static.rozetked.me/imager/main/images/uploads/LPOzw16fGLgH.webp" alt="Анонс фильма 1">
-    <img src="https://www.indiewire.com/wp-content/uploads/2018/12/Screen-Shot-2018-12-06-at-4.52.45-PM.png?w=674" alt="Анонс фильма 2">
+    <img src="https://static.rozetked.me/imager/full/images/uploads/jFr9J9bDyGR6.jpg" alt="Анонс фильма 1">
+    <img src="https://static.rozetked.me/imager/full/images/uploads/ToVf9RBXDA9f.jpg" alt="Анонс фильма 2">
+    <img src="https://static.rozetked.me/imager/full/images/uploads/07tB3rnV2Et5.jpg" alt="Анонс фильма 3">
+    <img src="https://static.rozetked.me/imager/full/images/uploads/5itIXe2pXjNZ.jpg" alt="Анонс фильма 4">
+    <img src="https://static.rozetked.me/imager/full/images/uploads/iYRqJTNjGwds.jpg" alt="Анонс фильма 5">
 </div>
-
+<?php include 'partials/sortForm.php'; ?>
 <div class="movies-grid">
     <?php if (isset($films) && is_array($films) && count($films) > 0): ?>
         <?php foreach ($films as $film): ?>
@@ -43,15 +47,16 @@
 
 <div class="pagination">
     <?php if ($currentPage > 1): ?>
-        <a href="/films?page=<?= $currentPage - 1; ?>&query=<?= htmlspecialchars($query ?? ''); ?>">Предыдущая</a>
+        <a href="/films?page=<?= $currentPage - 1; ?>&query=<?= htmlspecialchars($query ?? ''); ?>&sort=<?= htmlspecialchars($_GET['sort'] ?? 'year'); ?>">Предыдущая</a>
     <?php endif; ?>
 
     <span>Страница <?= $currentPage; ?> из <?= $totalPages; ?></span>
 
     <?php if ($currentPage < $totalPages): ?>
-        <a href="/films?page=<?= $currentPage + 1; ?>&query=<?= htmlspecialchars($query ?? ''); ?>">Следующая</a>
+        <a href="/films?page=<?= $currentPage + 1; ?>&query=<?= htmlspecialchars($query ?? ''); ?>&sort=<?= htmlspecialchars($_GET['sort'] ?? 'year'); ?>">Следующая</a>
     <?php endif; ?>
 </div>
+
 
 <?php include 'partials/footer.php'; ?>
 

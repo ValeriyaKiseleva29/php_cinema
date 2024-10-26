@@ -9,36 +9,32 @@
 <body>
 <?php include 'partials/header.php'; ?>
 
+<div class="favorites-grid"> <!-- Изменяем класс с movies-grid на favorites-grid -->
+    <?php if (!empty($favorites)): ?>
+        <?php foreach ($favorites as $favorite): ?>
+            <div class="movie-card">
+                <!-- Проверяем наличие изображения и подставляем изображение по умолчанию, если оно отсутствует -->
+                <img src="<?= htmlspecialchars($favorite['img_link'] ?? '/path/to/default/poster.jpg'); ?>" alt="<?= htmlspecialchars($favorite['title'] ?? 'Без названия'); ?>">
 
+                <!-- Проверяем наличие заголовка -->
+                <h2><?= htmlspecialchars($favorite['title'] ?? 'Без названия'); ?></h2>
 
-<!-- Список избранных фильмов -->
-<div class="movies-grid">
-    <!-- Фильм 1 -->
-    <div class="movie-card">
-        <img src="path_to_favorite_movie_1.jpg" alt="Избранный фильм 1">
-        <h3>Название фильма 1</h3>
-    </div>
+                <!-- Проверяем наличие года, если год не указан, показываем прочерк -->
+                <p><strong>Год:</strong> <?= htmlspecialchars($favorite['year'] ?? '—'); ?></p>
 
-    <!-- Фильм 2 -->
-    <div class="movie-card">
-        <img src="path_to_favorite_movie_2.jpg" alt="Избранный фильм 2">
-        <h3>Название фильма 2</h3>
-    </div>
-
-    <!-- Фильм 3 -->
-    <div class="movie-card">
-        <img src="path_to_favorite_movie_3.jpg" alt="Избранный фильм 3">
-        <h3>Название фильма 3</h3>
-    </div>
-
-    <!-- Фильм 4 -->
-    <div class="movie-card">
-        <img src="path_to_favorite_movie_4.jpg" alt="Избранный фильм 4">
-        <h3>Название фильма 4</h3>
-    </div>
+                <!-- Ссылка для просмотра фильма -->
+                <?php if (!empty($favorite['id'])): ?>
+                    <a href="/films/<?= htmlspecialchars($favorite['id']); ?>">Смотреть онлайн</a>
+                <?php else: ?>
+                    <p>Фильм недоступен для просмотра.</p>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>У вас пока нет избранных фильмов.</p>
+    <?php endif; ?>
 </div>
-<?php include 'partials/footer.php'; ?>
 
+<?php include 'partials/footer.php'; ?>
 </body>
 </html>
-

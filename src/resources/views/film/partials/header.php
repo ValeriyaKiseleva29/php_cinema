@@ -1,10 +1,10 @@
 <nav>
     <ul>
         <li class="menu-left">
-            <a href="/">Главная</a>
+            <a href="/">Главная</a> <!-- Переход на главную без сортировки -->
         </li>
         <div class="logo">
-            <a href="/">Movie in Che</a>
+            <a href="/">Movie in Che</a> <!-- Переход на главную без сортировки -->
         </div>
         <li>
             <form class="search-form" action="/films" method="GET">
@@ -15,6 +15,7 @@
 
         <?php if (isset($_SESSION['user_id'])): ?>
             <li><a href="/favorites">Избранное</a></li>
+            <li><a href="/profile">Мой профиль</a></li>
             <li><a href="/logout_confirmation">Выйти</a></li>
         <?php else: ?>
             <li class="menu-right"><a href="/login">Войти</a></li>
