@@ -48,7 +48,7 @@
 
         <div class="form-group <?= isset($_SESSION['errors']['age']) ? 'has-error' : '' ?>">
             <label for="age">Возраст:</label>
-            <input type="number" id="age" name="age" class="<?= isset($_SESSION['errors']['age']) ? 'error' : '' ?>" value="<?= $_SESSION['old']['age'] ?? '' ?>">
+            <input type="number" id="age" name="age" min="0" class="<?= isset($_SESSION['errors']['age']) ? 'error' : '' ?>" value="<?= $_SESSION['old']['age'] ?? '' ?>">
             <?php if (isset($_SESSION['errors']['age'])): ?>
                 <span class="error"><?= $_SESSION['errors']['age'] ?></span>
             <?php endif; ?>

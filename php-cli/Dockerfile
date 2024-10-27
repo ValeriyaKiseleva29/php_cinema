@@ -6,4 +6,6 @@ RUN apk add --no-cache --virtual build-dependencies icu-dev libxml2-dev $PHPIZE_
     && pecl install redis \
     && docker-php-ext-enable redis
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 

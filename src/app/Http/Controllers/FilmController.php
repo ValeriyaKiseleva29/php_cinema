@@ -88,7 +88,71 @@ class FilmController extends Controller
                 ]) > 0;
         }
 
-        // Передаем данные о фильме и флаг is_favorite в представление
-        return View::view('film.filmShow', compact('film', 'is_favorite'));
+        // Получаем все комментарии для этого фильма
+        $comments = $this->db->fetchAll("SELECT comments.id, comments.comment, comments.created_at, users.username, users.avatar, comments.user_id 
+                                 FROM comments 
+                                 JOIN users ON comments.user_id = users.id 
+                                 WHERE movie_id = :movie_id 
+                                 ORDER BY comments.created_at DESC",
+            ['movie_id' => $filmId]);
+
+
+
+        // Передаем данные о фильме, избранном и комментариях в представление
+        return View::view('film.filmShow', compact('film', 'is_favorite', 'comments'));
+    }
+
+
+    public function addComment()
+    {
+        // Проверка на авторизацию пользователя
+        if (!isset($_SESSION['user_id'])) {
+            Route::redirect('/login');
+            return;
+        }
+
+        // Получаем данные из формы
+        $userId = $_POST['user_id'];
+        $filmId = $_POST['film_id'];
+        $commentText = isset($_POST['comment']) ? htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8') : '';
+
+        // Проверяем, что комментарий не пустой
+        if (empty($commentText)) {
+            Route::redirect('/films/' . $filmId);
+            return;
+        }
+
+        // Вставляем комментарий в базу данных
+        $sql = "INSERT INTO comments (user_id, movie_id, comment, created_at) 
+            VALUES (:user_id, :film_id, :comment, NOW())";
+
+        $params = [
+            'user_id' => $userId,
+            'film_id' => $filmId,
+            'comment' => $commentText
+        ];
+
+        $this->db->execute($sql, $params);
+
+        // Перенаправляем обратно на страницу фильма
+        Route::redirect('/films/' . $filmId);
+    }
+    public function deleteComment()
+    {
+        // Проверка на авторизацию пользователя
+        if (!isset($_SESSION['user_id'])) {
+            Route::redirect('/login');
+            return;
+        }
+
+        $comment_id = $_POST['comment_id'];
+
+        // Удаляем комментарий из базы данных
+        $sql = "DELETE FROM comments WHERE id = :id AND user_id = :user_id";
+        $this->db->execute($sql, ['id' => $comment_id, 'user_id' => $_SESSION['user_id']]);
+
+        // Возвращаем успешный ответ
+        echo json_encode(['success' => true]);
+        exit;
     }
 }

@@ -6,6 +6,7 @@
   },
   "require": {
     "ext-pdo": "*",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "fzaninotto/faker": "^1.5"
   }
 }

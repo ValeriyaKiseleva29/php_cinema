@@ -77,8 +77,17 @@ class AuthController extends Controller
         if (empty($_POST['age'])) {
             $errors['age'] = 'Возраст обязателен.';
         } elseif (!$numberValidator->validate($_POST['age'])) {
-            $errors['age'] = 'Неверный формат возраста.';
+            $errors['age'] = 'Неверный формат возраста. (Мы не верим, что Вам больше 100 лет)';
         }
+
+        // Валидация даты рождения (необязательно)
+        $dob = isset($_POST['dob']) && !empty($_POST['dob']) ? $_POST['dob'] : null;
+
+        // Валидация пола (необязательно)
+        $gender = isset($_POST['gender']) && !empty($_POST['gender']) ? $_POST['gender'] : null;
+
+        // Валидация интересов (необязательно)
+        $interests = isset($_POST['interests']) && !empty($_POST['interests']) ? json_encode($_POST['interests']) : null;
 
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
@@ -92,20 +101,21 @@ class AuthController extends Controller
 
         // Сохраняем пользователя в базу данных
         $sql = "INSERT INTO users (username, email, password, dob, age, gender, interests) 
-        VALUES (:username, :email, :password, :dob, :age, :gender, :interests)";
+            VALUES (:username, :email, :password, :dob, :age, :gender, :interests)";
 
         $this->db->execute($sql, [
             'username' => $_POST['username'],
             'email' => $_POST['email'],
             'password' => $hashedPassword,
-            'dob' => $_POST['dob'],
+            'dob' => $dob,
             'age' => $_POST['age'],
-            'gender' => $_POST['gender'],
-            'interests' => json_encode($_POST['interests']), // сохраняем интересы как JSON
+            'gender' => $gender,
+            'interests' => $interests,
         ]);
 
         $user_id = $this->db->lastInsertId();
 
+        // Устанавливаем сессии после успешной регистрации
         $_SESSION['user_id'] = $user_id;
         $_SESSION['username'] = $_POST['username'];
 
@@ -115,9 +125,9 @@ class AuthController extends Controller
             setcookie('remember_me', $rememberMeToken, [
                 'expires' => time() + (86400 * 30), // Кука на 30 дней
                 'path' => '/',
-                'httponly' => true,
-                'secure' => isset($_SERVER['HTTPS']),
-                'samesite' => 'Strict',
+                'httponly' => true,       // Кука недоступна через JavaScript
+                'secure' => isset($_SERVER['HTTPS']), // Только по HTTPS
+                'samesite' => 'Strict',   // Защита от CSRF-атак
             ]);
 
             // Сохраняем токен в базу данных
@@ -130,9 +140,9 @@ class AuthController extends Controller
 
         // Перенаправляем пользователя после успешной регистрации
         $_SESSION['message'] = 'Вы успешно зарегистрировались. Добро пожаловать на сайт!';
-
         Route::redirect('/films');
     }
+
 
     public function login()
     {

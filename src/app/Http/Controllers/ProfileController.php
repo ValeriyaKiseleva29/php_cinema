@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RMVC\Route\Route;
 use App\Validation\EmailValidator;
 use App\Validation\PasswordValidator;
 use App\RMVC\Database\DB;
@@ -22,6 +23,11 @@ class ProfileController extends Controller
     // Показ страницы профиля
     public function show()
     {
+        // Проверка на авторизацию пользователя
+        if (!isset($_SESSION['user_id'])) {
+            Route::redirect('/login');
+            return;
+        }
         // Получаем данные пользователя из базы по ID
         $sql = "SELECT * FROM users WHERE id = :id";
         $user = $this->db->fetch($sql, ['id' => $_SESSION['user_id']]);
@@ -33,6 +39,10 @@ class ProfileController extends Controller
     // Обновление почты и пароля
     public function update()
     {
+        if (!isset($_SESSION['user_id'])) {
+            Route::redirect('/login');
+            return;
+        }
         $errors = [];
 
         // Валидация нового email
@@ -86,6 +96,10 @@ class ProfileController extends Controller
     // Загрузка аватара
     public function uploadAvatar()
     {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
         // Проверяем, был ли загружен файл
         if (!isset($_FILES['avatar']) || $_FILES['avatar']['error'] !== UPLOAD_ERR_OK) {
             $_SESSION['errors']['avatar'] = 'Ошибка при загрузке файла.';

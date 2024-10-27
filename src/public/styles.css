@@ -659,6 +659,122 @@ button:hover {
 .sort-btn:hover {
     background-color: #6a1b9a !important; /* Более светлый фиолетовый при наведении */
 }
+/* Стили для блока с комментариями */
+.comment-block {
+    display: flex;
+    flex-direction: column; /* Изменяем направление на колонку */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Ограничение максимальной ширины блока */
+    margin-left: auto;
+    margin-right: auto; /* Центрируем блок */
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between; /* Выравниваем дату справа */
+    align-items: center;
+    width: 100%; /* Занимаем всю ширину блока */
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.comment-meta {
+    flex-grow: 1; /* Имя пользователя растягивается на доступное пространство */
+}
+
+.username {
+    font-weight: bold;
+    font-size: 18px; /* Сделаем имя пользователя крупнее */
+    color: #333;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: #999;
+    white-space: nowrap; /* Предотвращаем перенос даты */
+}
+
+/* Стили для текста комментария */
+.comment-body p {
+    font-size: 16px; /* Увеличим шрифт комментария */
+    font-weight: bold; /* Сделаем текст жирным */
+    margin: 0; /* Уберем отступы */
+}
+
+/* Стили для поля ввода комментариев */
+.comment-form {
+    max-width: 800px; /* Ограничение ширины формы */
+    margin-left: auto;
+    margin-right: auto; /* Центрируем форму */
+    padding: 20px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: none; /* Отключение изменения размера поля */
+}
+
+.comment-form button {
+    margin-top: 10px;
+    background-color: #5a67d8; /* Темно-фиолетовый */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+    background-color: #434190; /* Темнее при наведении */
+}
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.clear-input {
+    position: absolute;
+    right: 10px; /* Отступ крестика справа */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    display: none; /* Крестик скрыт, пока поле не заполнено */
+}
+
+.search-input {
+    padding-right: 30px; /* Отступ для крестика внутри поля */
+}
+
+.search-input:not(:placeholder-shown) + .clear-input {
+    display: inline; /* Показ крестика, когда поле не пустое */
+}
+.delete-comment {
+    color: red;
+    font-size: 18px;
+    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+}
+
+.delete-comment:hover {
+    color: darkred;
+}
 
 
 

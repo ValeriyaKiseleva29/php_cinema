@@ -2,8 +2,12 @@
 namespace App\Http\Controllers;
 use App\RMVC\Database\DB;
 
+use Faker\Factory;
+use App\Traits\LinkTrait;
+
 class Controller
 {
+    use LinkTrait;
     private $filmToken = 'O0NZvxemcwkiq30bsgQoFKEQX6EqiVl7';
     private $filmEndpoint = 'movies';
     private $shortEndpoint = 'short';
@@ -75,7 +79,7 @@ class Controller
         foreach ($films as $film) {
             $imdbId = $film['imdb_id'];
 
-            $url = "http://www.omdbapi.com/?i={$imdbId}&apikey={$apiKey}";
+            $url = $this->buildLink($imdbId, $apiKey);
 
             $response = $this->makeRequest($url);
 
@@ -143,5 +147,36 @@ class Controller
 
         curl_close($ch);
         return json_decode($response, true);
+    }
+    public function generateUsers()
+    {
+        $faker = Factory::create();
+        $db = new DB();
+        for ($i = 0; $i < 1000; $i++) {
+            $username = $faker->userName;
+            $email = $faker->email;
+            $password = password_hash('password', PASSWORD_DEFAULT);
+            $age = $faker->numberBetween(18, 60);
+            $dob = $faker->date('Y-m-d', '-18 years');
+            $gender = $faker->randomElement(['male', 'female']);
+            $interests = $faker->randomElement(['movies', 'music', 'sports']);
+
+
+            $sql = "INSERT INTO users (username, email, password, dob, age, gender, interests) 
+            VALUES (:username, :email, :password, :dob, :age, :gender, :interests)";
+
+            $db->execute($sql, [
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'dob' => $dob,
+                'age' => $age,
+                'gender' => $gender,
+                'interests' => json_encode([$interests])
+            ]);
+
+            echo "Добавлен пользователь: $username, $email\n";
+        }
+
     }
 }
