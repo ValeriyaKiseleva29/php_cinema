@@ -5,7 +5,7 @@
             <option value="year" <?= ($_GET['sort'] ?? '') === 'year' ? 'selected' : ''; ?>>Год</option>
             <option value="title" <?= ($_GET['sort'] ?? '') === 'title' ? 'selected' : ''; ?>>Алфавиту</option>
         </select>
-        <input type="hidden" name="query" value="<?= htmlspecialchars($_GET['query'] ?? ''); ?>"> <!-- сохраняем поисковый запрос -->
+        <input type="hidden" name="query" value="<?= htmlspecialchars($_GET['query'] ?? ''); ?>">
         <button type="submit" class="sort-btn">Применить</button>
     </form>
 </div>

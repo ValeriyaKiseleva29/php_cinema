@@ -21,7 +21,6 @@ class Route
     {
         $routeConfiguration = new RouteConfiguration($route, $controller[0], $controller[1]);
         self::$routesGet[] = $routeConfiguration;
-        // var_dump($routeConfiguration);
         return $routeConfiguration;
     }
 
@@ -29,14 +28,13 @@ class Route
     {
         $routeConfiguration = new RouteConfiguration($route, $controller[0], $controller[1]);
         self::$routesPost[] = $routeConfiguration;
-        // var_dump($routeConfiguration);
         return $routeConfiguration;
     }
 
     public static function redirect($url)
     {
         header('Location: ' . $url);
-        exit; // Завершаем выполнение после редиректа
+        exit;
     }
 
 

@@ -20,8 +20,6 @@
             <p>Видео недоступно</p>
             <input type="hidden" name="film" value="<?= htmlspecialchars($film['id']); ?>">
         <?php endif; ?>
-
-        <!-- Если фильм в избранном, показываем кнопку "Удалить из избранного" -->
         <?php if (isset($_SESSION['user_id'])): ?>
             <?php if ($is_favorite): ?>
                 <form action="/favorites/remove" method="POST" class="favorite-form">
@@ -35,12 +33,10 @@
                 </form>
             <?php endif; ?>
         <?php endif; ?>
-
-        <!-- Кнопка "Оставить комментарий" для неавторизованных пользователей -->
         <?php if (!isset($_SESSION['user_id'])): ?>
             <a href="/auth" id="leave-comment" class="favorite-btn">Оставить комментарий</a>
         <?php else: ?>
-            <!-- Форма для добавления комментария для авторизованных пользователей -->
+
             <form action="/comments/add" method="POST" class="comment-form">
                 <input type="hidden" name="film_id" value="<?= htmlspecialchars($film['id']); ?>">
                 <input type="hidden" name="user_id" value="<?= htmlspecialchars($_SESSION['user_id']); ?>">
@@ -54,10 +50,8 @@
             </form>
         <?php endif; ?>
 
-        <!-- Секция для отображения комментариев -->
         <div class="comments-section">
             <h2>Комментарии</h2>
-
             <?php if (!empty($comments)): ?>
                 <?php foreach ($comments as $comment): ?>
                     <div class="comment-block" id="comment-block-<?= $comment['id']; ?>">
@@ -93,11 +87,9 @@
 
 <?php include 'partials/footer.php'; ?>
 
-<!-- Добавляем JavaScript для удаления комментария -->
 <script>
     function deleteComment(commentId) {
         if (confirm('Вы уверены, что хотите удалить этот комментарий?')) {
-            // Отправляем POST-запрос на сервер для удаления комментария
             fetch('/comments/delete', {
                 method: 'POST',
                 headers: {
@@ -107,7 +99,6 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // Удаляем комментарий из DOM после успешного ответа от сервера
                         document.getElementById('comment-block-' + commentId).remove();
                     } else {
                         alert('Произошла ошибка при удалении комментария.');

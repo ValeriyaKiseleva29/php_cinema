@@ -5,6 +5,8 @@ use App\RMVC\Database\DB;
 use Faker\Factory;
 use App\Traits\LinkTrait;
 
+
+
 class Controller
 {
     use LinkTrait;

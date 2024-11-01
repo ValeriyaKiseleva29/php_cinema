@@ -9,20 +9,13 @@
 <body>
 <?php include 'partials/header.php'; ?>
 
-<div class="favorites-grid"> <!-- Изменяем класс с movies-grid на favorites-grid -->
+<div class="favorites-grid">
     <?php if (!empty($favorites)): ?>
         <?php foreach ($favorites as $favorite): ?>
             <div class="movie-card">
-                <!-- Проверяем наличие изображения и подставляем изображение по умолчанию, если оно отсутствует -->
                 <img src="<?= htmlspecialchars($favorite['img_link'] ?? '/path/to/default/poster.jpg'); ?>" alt="<?= htmlspecialchars($favorite['title'] ?? 'Без названия'); ?>">
-
-                <!-- Проверяем наличие заголовка -->
                 <h2><?= htmlspecialchars($favorite['title'] ?? 'Без названия'); ?></h2>
-
-                <!-- Проверяем наличие года, если год не указан, показываем прочерк -->
                 <p><strong>Год:</strong> <?= htmlspecialchars($favorite['year'] ?? '—'); ?></p>
-
-                <!-- Ссылка для просмотра фильма -->
                 <?php if (!empty($favorite['id'])): ?>
                     <a href="/films/<?= htmlspecialchars($favorite['id']); ?>">Смотреть онлайн</a>
                 <?php else: ?>

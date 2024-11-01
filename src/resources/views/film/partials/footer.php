@@ -10,7 +10,7 @@
             <div class="footer-section social-section">
                 <h3>Social</h3>
                 <div class="social-icons">
-                    <!-- Здесь можно вставить ссылки на соцсети -->
+
                 </div>
             </div>
         </div>

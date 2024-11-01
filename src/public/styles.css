@@ -8,8 +8,8 @@ nav {
     background-color: #2a084a;
     padding: 15px;
     display: flex;
-    justify-content: space-between; /* Логотип будет находиться по центру между элементами */
-    align-items: center; /* Центрируем элементы по вертикали */
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav ul {
@@ -19,7 +19,7 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Заставляем список растянуться по ширине */
+    width: 100%;
 }
 
 nav ul li {
@@ -39,14 +39,14 @@ nav ul .menu-right {
 }
 
 .logo {
-    font-size: 38px; /* Увеличиваем размер текста логотипа */
+    font-size: 38px;
     font-weight: bold;
     color: white;
     display: flex;
-    justify-content: center; /* Центрируем текст */
-    align-items: center; /* Центрируем по вертикали */
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    white-space: nowrap; /* Не разрешаем переносу текста */
+    white-space: nowrap;
     padding: 0;
     margin: 0;
 }
@@ -58,9 +58,9 @@ nav ul .menu-right {
 
 .logo li {
     display: flex;
-    align-items: center; /* Центрируем логотип внутри списка */
-    padding: 0; /* Убираем отступы внутри элемента списка */
-    margin: 0; /* Убираем отступы внутри элемента списка */
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -74,8 +74,8 @@ nav ul .menu-right {
 }
 
 .movie-announcement img {
-    max-height: 400px; /* Устанавливаем максимальную высоту */
-    width: auto; /* Сохраняем пропорции */
+    max-height: 400px;
+    width: auto;
     display: inline-block;
 }
 
@@ -88,17 +88,17 @@ nav ul .menu-right {
 }
 
 .movie-card {
-    width: 20%; /* Делаем карточку немного меньше */
+    width: 20%;
     margin-bottom: 20px;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Добавляем плавный переход для эффектов */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .movie-card:hover {
-    transform: scale(1.05); /* Увеличение карточки при наведении */
-    box-shadow: 0 8px 18px rgba(42, 8, 74, 0.8); /* Темно-фиолетовая тень при наведении */
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(42, 8, 74, 0.8);
 }
 
 .movie-card img {
@@ -111,7 +111,7 @@ nav ul .menu-right {
     margin: 10px 0;
 }
 
-/* Стили для футера */
+
 .footer {
     background-color: white;
     padding: 30px 0;
@@ -243,11 +243,11 @@ button[type="submit"]:hover {
 .error {
     color: #721c24;
     font-size: 14px;
-    margin-top: 5px; /* Расположить сообщение под полем */
+    margin-top: 5px;
 }
 
 input.error, select.error, textarea.error {
-    border: 1px solid #f44336; /* Красный контур для полей с ошибкой */
+    border: 1px solid #f44336;
     background-color: #fef0f0;
 }
 
@@ -258,19 +258,19 @@ input.error, select.error, textarea.error {
     background-color: #fef0f0;
 }
 .error-messages {
-    display: none; /* Полностью скрываем блок с ошибками после обновления страницы */
+    display: none;
 }
 
 input.error:focus, select.error:focus, textarea.error:focus {
     outline: none;
-    border-color: #d32f2f; /* Более темный красный при фокусе */
+    border-color: #d32f2f;
 }
 
 .form-group .error {
     color: #f44336;
     font-size: 14px;
     margin-top: 5px;
-    display: block; /* Отображаем блок под полем ввода */
+    display: block;
 }
 
 @media (min-width: 768px) {
@@ -324,14 +324,14 @@ input.error:focus, select.error:focus, textarea.error:focus {
     text-align: center;
     flex: 1;
 }
-/* Стиль для страницы подтверждения выхода */
+
 .confirmation {
     max-width: 400px;
-    margin: 100px auto; /* Центрируем блок по вертикали и горизонтали */
+    margin: 100px auto;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень вокруг блока */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -341,7 +341,7 @@ input.error:focus, select.error:focus, textarea.error:focus {
     color: #333;
 }
 
-/* Стили для кнопок Да и Нет */
+
 .confirmation a {
     display: inline-block;
     padding: 10px 20px;
@@ -353,83 +353,83 @@ input.error:focus, select.error:focus, textarea.error:focus {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Стиль для кнопки Да (зеленая) */
+
 .confirmation a[href="/logout"] {
-    background-color: #4CAF50; /* Зеленая кнопка */
+    background-color: #4CAF50;
 }
 
 .confirmation a[href="/logout"]:hover {
     background-color: #45a049;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень при наведении */
-    transform: translateY(-2px); /* Плавный подъем */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
-/* Стиль для кнопки Нет (красная) */
+
 .confirmation a[href="/"] {
-    background-color: #f44336; /* Красная кнопка */
+    background-color: #f44336;
 }
 
 .confirmation a[href="/"]:hover {
     background-color: #e53935;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень при наведении */
-    transform: translateY(-2px); /* Плавный подъем */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
-/* Стиль для сообщения */
+
 .message {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #4a148c; /* Глубокий фиолетовый фон */
-    color: #fff; /* Белый текст для контраста */
-    font-style: normal; /* Прямой текст, чтобы было легче читать */
-    border: 2px solid #ab47bc; /* Яркая граница для контраста */
-    border-radius: 15px; /* Более закругленные углы */
+    background-color: #4a148c;
+    color: #fff;
+    font-style: normal;
+    border: 2px solid #ab47bc;
+    border-radius: 15px;
     text-align: center;
     font-size: 18px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Более сильная тень */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     position: relative;
-    animation: slideIn 0.5s ease-out, fadeOut 0.5s 4.5s ease-in forwards; /* Анимация появления и исчезновения */
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s 4.5s ease-in forwards;
     opacity: 1;
 }
 
-/* Анимация появления */
+
 @keyframes slideIn {
     0% {
         opacity: 0;
-        transform: translateY(-30px); /* Начинаем чуть выше */
+        transform: translateY(-30px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Движение вниз к нормальной позиции */
+        transform: translateY(0);
     }
 }
 
-/* Анимация исчезновения */
+
 @keyframes fadeOut {
     0% {
         opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translateY(-30px); /* Сообщение уходит вверх */
+        transform: translateY(-30px);
     }
 
 }
 .movie-detail {
     display: flex;
-    justify-content: center; /* Центрируем весь блок с фильмом */
+    justify-content: center;
     padding: 20px;
 }
 
 .movie-info {
-    width: 100%; /* Ширина блока на всю страницу */
-    max-width: 1200px; /* Ограничиваем максимальную ширину для контента */
-    text-align: center; /* Центрируем заголовок и текст */
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
 }
 
 .movie-info h1 {
-    color: #2a084a; /* Цвет заголовка под цвет хедера */
-    font-size: 36px; /* Размер заголовка */
+    color: #2a084a;
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
@@ -439,17 +439,17 @@ input.error:focus, select.error:focus, textarea.error:focus {
 }
 
 .movie-info iframe {
-    width: 90%; /* Уменьшаем ширину iframe до 90% */
-    height: 600px; /* Устанавливаем высоту для 16:9 */
-    max-width: 1100px; /* Максимальная ширина проигрывателя */
-    border: none; /* Убираем рамку у iframe */
+    width: 90%;
+    height: 600px;
+    max-width: 1100px;
+    border: none;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .pagination {
     display: flex;
-    justify-content: center; /* Центрирование по горизонтали */
-    margin-bottom: 30px; /* Отступ перед футером */
+    justify-content: center;
+    margin-bottom: 30px;
     padding: 10px;
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -457,7 +457,7 @@ input.error:focus, select.error:focus, textarea.error:focus {
 
 .pagination a {
     color: white;
-    background-color: #2a084a; /* Фиолетовый цвет как у хедера */
+    background-color: #2a084a;
     padding: 8px 16px;
     margin: 0 5px;
     text-decoration: none;
@@ -466,7 +466,7 @@ input.error:focus, select.error:focus, textarea.error:focus {
 }
 
 .pagination a:hover {
-    background-color: #6a1b9a; /* Более светлый фиолетовый при наведении */
+    background-color: #6a1b9a;
 }
 
 .pagination span {
@@ -477,32 +477,32 @@ input.error:focus, select.error:focus, textarea.error:focus {
     background-color: #f4f4f4;
 }
 
-/* Контейнер для всей страницы */
+
 .profile-container {
     display: flex;
-    justify-content: center; /* Центрируем оба блока по горизонтали */
-    align-items: flex-start; /* Выровняем блоки сверху */
+    justify-content: center;
+    align-items: flex-start;
     padding: 40px;
     flex-wrap: wrap;
 }
 
-/* Обертка для каждой секции (заголовок + форма) */
+
 .section-wrapper {
     display: flex;
     flex-direction: column;
-    width: 450px; /* Ширина каждого блока */
-    margin: 0 auto; /* Центрируем блоки */
+    width: 450px;
+    margin: 0 auto;
 }
 
-/* Заголовки над блоками */
+
 .section-wrapper h2 {
     margin-bottom: 15px;
     font-size: 20px;
     color: #333;
-    text-align: left; /* Выравнивание заголовков по левому краю */
+    text-align: left;
 }
 
-/* Стили для формы профиля */
+
 .profile-form,
 .avatar-form {
     background-color: white;
@@ -512,11 +512,11 @@ input.error:focus, select.error:focus, textarea.error:focus {
     width: 100%;
 }
 
-/* Стили для инпутов */
+
 input[type="email"],
 input[type="password"],
 input[type="file"] {
-    width: calc(100% - 20px); /* Убираем инпуты от края */
+    width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -524,7 +524,7 @@ input[type="file"] {
     box-sizing: border-box;
 }
 
-/* Стили для кнопок */
+
 button {
     width: 100%;
     padding: 10px;
@@ -540,7 +540,7 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Стили для изображения аватара */
+
 .avatar-form img {
     display: block;
     margin-top: 15px;
@@ -554,15 +554,15 @@ button:hover {
     border: 1px solid #c3e6cb;
     border-radius: 4px;
     text-align: center;
-    position: relative; /* Изменим на relative, чтобы сообщение отображалось в потоке документа */
-    margin-bottom: 20px; /* Отступ снизу, чтобы не перекрывать заголовки */
-    width: 100%; /* Занимаем всю ширину контейнера */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-/* Стили для инпутов */
+
 
 .form-group {
-    margin-bottom: 20px; /* Отступ между группами формы */
+    margin-bottom: 20px;
     position: relative;
 }
 .favorite-btn {
@@ -574,77 +574,77 @@ button:hover {
     border-radius: 5px !important;
     font-size: 14px !important;
     display: inline-block !important;
-    width: auto !important; /* Устанавливаем автоматическую ширину */
-    white-space: nowrap !important; /* Запрещаем перенос текста */
+    width: auto !important;
+    white-space: nowrap !important;
 }
 
 .favorite-btn:hover {
-    background-color: #6a1b9a !important; /* Цвет при наведении, как у пагинации */
+    background-color: #6a1b9a !important;
 }
-/* Для избранного уменьшите размер карточек в два раза */
+
 .favorites-grid .movie-card {
-    width: 10%; /* Половина от текущего значения */
-    margin-bottom: 10px; /* Меньший отступ между карточками */
-    padding: 5px; /* Меньший внутренний отступ */
+    width: 10%;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
 .favorites-grid .movie-card img {
-    max-width: 100%; /* Автоматическая ширина для адаптации к карточке */
-    max-height: 150px; /* Ограничиваем высоту изображения, чтобы она была в два раза меньше */
+    max-width: 100%;
+    max-height: 150px;
 }
 
 .favorites-grid .movie-card h2 {
-    font-size: 14px; /* Уменьшенный шрифт для заголовка */
-    margin: 5px 0; /* Меньший отступ сверху и снизу */
+    font-size: 14px;
+    margin: 5px 0;
 }
 
 .favorites-grid .movie-card p {
-    font-size: 12px; /* Уменьшенный размер текста */
-    margin: 5px 0; /* Меньший отступ для текста */
+    font-size: 12px;
+    margin: 5px 0;
 }
 
 .favorites-grid .movie-card a {
-    font-size: 12px; /* Уменьшенный размер текста для ссылки */
-    padding: 4px 8px; /* Меньшие отступы для кнопки "Смотреть онлайн" */
+    font-size: 12px;
+    padding: 4px 8px;
 }
 .favorites-grid {
     display: flex;
-    justify-content: flex-start; /* Выровнять по левому краю */
-    flex-wrap: nowrap; /* Отключаем перенос строк */
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку, если карточки не помещаются */
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     padding: 20px;
-    gap: 10px; /* Отступы между карточками */
+    gap: 10px;
 }
 
 .favorites-grid .movie-card {
-    flex: 0 0 auto; /* Указываем, чтобы карточки не сжимались */
-    width: 10%; /* Оставляем карточки меньше стандартных размеров */
-}
-/* Центрируем контейнер формы сортировки */
-.sort-container {
-    display: flex;
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center; /* Центрирование по вертикали */
-    margin-bottom: 20px; /* Отступ снизу */
+    flex: 0 0 auto;
+    width: 10%;
 }
 
-/* Стили для формы сортировки */
+.sort-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
 .sort-form {
     display: flex;
     align-items: center;
-    gap: 10px; /* Расстояние между элементами формы */
+    gap: 10px;
 }
 
-/* Стили для метки (label), чтобы она была на одной линии с выпадающим списком */
+
 .sort-form label {
-    margin-right: 10px; /* Отступ между текстом и выпадающим списком */
-    white-space: nowrap; /* Оставляем текст на одной строке */
+    margin-right: 10px;
+    white-space: nowrap;
 }
 
-/* Стили для кнопки сортировки */
+
 .sort-btn {
     color: white !important;
-    background-color: #2a084a !important; /* Фиолетовый цвет */
+    background-color: #2a084a !important;
     padding: 5px 10px !important;
     margin: 0 5px !important;
     border: none !important;
@@ -657,27 +657,27 @@ button:hover {
 }
 
 .sort-btn:hover {
-    background-color: #6a1b9a !important; /* Более светлый фиолетовый при наведении */
+    background-color: #6a1b9a !important;
 }
-/* Стили для блока с комментариями */
+
 .comment-block {
     display: flex;
-    flex-direction: column; /* Изменяем направление на колонку */
+    flex-direction: column;
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Ограничение максимальной ширины блока */
+    max-width: 800px;
     margin-left: auto;
-    margin-right: auto; /* Центрируем блок */
+    margin-right: auto;
 }
 
 .comment-header {
     display: flex;
-    justify-content: space-between; /* Выравниваем дату справа */
+    justify-content: space-between;
     align-items: center;
-    width: 100%; /* Занимаем всю ширину блока */
+    width: 100%;
     margin-bottom: 10px;
 }
 
@@ -689,33 +689,33 @@ button:hover {
 }
 
 .comment-meta {
-    flex-grow: 1; /* Имя пользователя растягивается на доступное пространство */
+    flex-grow: 1;
 }
 
 .username {
     font-weight: bold;
-    font-size: 18px; /* Сделаем имя пользователя крупнее */
+    font-size: 18px;
     color: #333;
 }
 
 .comment-time {
     font-size: 12px;
     color: #999;
-    white-space: nowrap; /* Предотвращаем перенос даты */
+    white-space: nowrap;
 }
 
-/* Стили для текста комментария */
+
 .comment-body p {
-    font-size: 16px; /* Увеличим шрифт комментария */
-    font-weight: bold; /* Сделаем текст жирным */
-    margin: 0; /* Уберем отступы */
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
 }
 
-/* Стили для поля ввода комментариев */
+
 .comment-form {
-    max-width: 800px; /* Ограничение ширины формы */
+    max-width: 800px;
     margin-left: auto;
-    margin-right: auto; /* Центрируем форму */
+    margin-right: auto;
     padding: 20px;
 }
 
@@ -725,12 +725,12 @@ button:hover {
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 16px;
-    resize: none; /* Отключение изменения размера поля */
+    resize: none;
 }
 
 .comment-form button {
     margin-top: 10px;
-    background-color: #5a67d8; /* Темно-фиолетовый */
+    background-color: #5a67d8;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -740,7 +740,7 @@ button:hover {
 }
 
 .comment-form button:hover {
-    background-color: #434190; /* Темнее при наведении */
+    background-color: #434190;
 }
 .search-wrapper {
     position: relative;
@@ -749,20 +749,20 @@ button:hover {
 
 .clear-input {
     position: absolute;
-    right: 10px; /* Отступ крестика справа */
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 16px;
-    display: none; /* Крестик скрыт, пока поле не заполнено */
+    display: none;
 }
 
 .search-input {
-    padding-right: 30px; /* Отступ для крестика внутри поля */
+    padding-right: 30px;
 }
 
 .search-input:not(:placeholder-shown) + .clear-input {
-    display: inline; /* Показ крестика, когда поле не пустое */
+    display: inline;
 }
 .delete-comment {
     color: red;
